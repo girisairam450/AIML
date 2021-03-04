@@ -1,0 +1,9 @@
+item {
+  id: 1
+  name: 'steering_bypass_pin'
+}
+
+item {
+  id: 2
+  name: 'NO_steering_bypass_pin'
+}
