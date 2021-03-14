@@ -91,6 +91,19 @@ def square_root(num):
             low = mid+1
         else:
             return mid
-print(square_root(2))          
-    
+print(square_root(2))
+
+#---------------------------Swapping of numbers--------------------------------
+def swap_old(a,b):
+    temp = a
+    a = b
+    b = temp
+    return a,b
+print(swap_old(2,3))
+''' Optimized'''
+def swap(a,b):
+    return b,a
+print(swap(2,3))
+
+#---------------------------
     
