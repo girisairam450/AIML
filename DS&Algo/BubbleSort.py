@@ -16,6 +16,7 @@ def BubbleSort(arr, arr_len):
     cnt = 0
     for i in range(0,arr_len-1):
         for j in range(0,arr_len-i-1):
+            print(str(j)+' '+str(j+1))
             cnt+=1
             if arr[j] > arr[j+1]:
                 Swap(arr, j, j+1)
