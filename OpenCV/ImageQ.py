@@ -1,0 +1,103 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jul 16 18:12:26 2020
+
+@author: girisairam.ragam
+"""
+
+import cv2
+import numpy as np
+
+
+#image = cv2.imread(r'D:\girisairam.ragam\My Downloads\samples_IBM\Claim Form (1).jpg')
+#image = cv2.medianBlur(image,5)
+##img = cv2.resize(img, (widthImg, heightImg)) # RESIZE IMAGE
+#gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+#cv2.imshow("Result",gray_image)
+#cv2.waitKey(0)
+#cv2.destroyAllWindows()
+#
+#
+#retr, mask = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY_INV)
+## remove noise / close gaps
+#kernel =  np.ones((5,5),np.uint8)
+#result = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+#cv2.imshow("Result",result)
+#cv2.waitKey(0)
+#cv2.destroyAllWindows()
+#
+## dilate result to make characters more solid
+#kernel2 =  np.ones((3,3),np.uint8)
+#result = cv2.dilate(result,kernel2,iterations = 1)
+#cv2.imshow("Result",result)
+#cv2.waitKey(0)
+#cv2.destroyAllWindows()
+##invert to get black text on white background
+#result = cv2.bitwise_not(result)
+#
+#cv2.imshow("Result",result)
+#cv2.waitKey(0)
+#cv2.destroyAllWindows()
+
+
+
+
+#image = cv2.imread(r'D:\girisairam.ragam\My Downloads\samples_IBM\Aadhar Card (1).jpg')
+image = cv2.imread('138-S.jpeg')
+# create grayscale
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+# perform threshold
+retr, mask = cv2.threshold(gray_image, 190, 255, cv2.THRESH_BINARY)
+
+# findcontours
+ret, contours, hier = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+# select the largest contour
+largest_area = 0
+
+for cnt in contours:
+    if cv2.contourArea(cnt) > largest_area:
+        print(type(cnt))
+        cont = cnt
+        largest_area = cv2.contourArea(cnt)
+
+# find the rectangle (and the cornerpoints of that rectangle) that surrounds the contours / photo
+rect = cv2.minAreaRect(cont)
+box = cv2.boxPoints(rect)
+box = np.int0(box)
+
+#### Warp image to square
+# assign cornerpoints of the region of interest
+pts1 = np.float32([box[2],box[3],box[1],box[0]])
+# provide new coordinates of cornerpoints
+pts2 = np.float32([[0,0],[500,0],[0,110],[500,110]])
+
+# determine and apply transformationmatrix
+M = cv2.getPerspectiveTransform(pts1,pts2)
+tmp = cv2.warpPerspective(image,M,(500,110))
+
+ # create grayscale
+gray_image2 = cv2.cvtColor(tmp, cv2.COLOR_BGR2GRAY)
+# perform threshold
+retr, mask2 = cv2.threshold(gray_image2, 160, 255, cv2.THRESH_BINARY_INV)
+
+# remove noise / close gaps
+kernel =  np.ones((5,5),np.uint8)
+result = cv2.morphologyEx(mask2, cv2.MORPH_CLOSE, kernel)
+
+#draw rectangle on original image
+cv2.drawContours(image, [box], 0, (255,0,0), 2)
+
+# dilate result to make characters more solid
+kernel2 =  np.ones((3,3),np.uint8)
+result = cv2.dilate(result,kernel2,iterations = 1)
+
+#invert to get black text on white background
+result = cv2.bitwise_not(result)
+
+#show image
+cv2.imshow("Result", result)
+cv2.imshow("Image", image)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
