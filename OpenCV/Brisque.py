@@ -1,14 +1,7 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue May 26 17:09:41 2020
-
-@author: girisairam.ragam
-"""
-
 import imquality.brisque as brisque
 import PIL.Image
 
-path = r'D:\girisairam.ragam\My Downloads\KYC Images\Uid_3082873.jpg'
+path = r'path'
 img = PIL.Image.open(path)
 print(brisque.score(img))
 
@@ -17,20 +10,20 @@ print(brisque.score(img))
 #pages = convert_from_path(path, 500)
 
 #for page in pages:
-#    page.save(r'C:\Users\girisairam.ragam\Desktop\IQBotPractise\2COATSANDPACK.jpg', 'JPEG')
+#    page.save(r'path', 'JPEG')
 
 
 #from PIL import Image, ImageDraw, ImageFilter
 
-#im1 = Image.open(r'C:\Users\girisairam.ragam\Desktop\aadhar\aadhar.jpg')
-#im2 = Image.open(r'C:\Users\girisairam.ragam\Desktop\aadhar\capture.jpg')
+#im1 = Image.open(r'path1')
+#im2 = Image.open(r'path2')
 #back_im = im1.copy()
 #back_im.paste(im2, (400, 100))
-#back_im.save(r'C:\Users\girisairam.ragam\Desktop\aadhar\new.jpg', quality=95)
+#back_im.save(r'path1', quality=95)
 import os
 import imquality.brisque as brisque
 import PIL.Image
-source_Imgs_folder = 'C:/Users/girisairam.ragam/Desktop/aadhar/Source/'
+source_Imgs_folder = 'srcfolder'
 scores={}
 for filename in os.listdir(source_Imgs_folder):
     if filename.endswith(".jpg"):
