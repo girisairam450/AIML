@@ -94,10 +94,10 @@ if __name__ == '__main__':
     NoOfArgs = len(sys.argv) - 1
 
     path = str(sys.argv[1])
-    #logging.basicConfig(filename='C:\\Users\\Desktop\\TemplateMatching\\' + 'logger.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s %(name)s %(message)s')
+    #logging.basicConfig(filename='path' + 'logger.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s %(name)s %(message)s')
     logging.basicConfig(filename=path + 'logger.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s %(name)s %(message)s')
     logger = logging.getLogger(__name__)
-    #HomographicSkew('C:\\Users\\Desktop\\TemplateMatching\\', 'sticker2.jpg', '503_1_2.tiff')
+    #HomographicSkew('path', 'sticker2.jpg', '503_1_2.tiff')
     if NoOfArgs == 4:
         HomographicSkew(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
     elif NoOfArgs == 3:
