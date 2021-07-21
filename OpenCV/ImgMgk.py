@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jul 15 11:25:08 2020
-
-@author: girisairam.ragam
-"""
 import cv2
 import numpy as np
 heightImg = 640
