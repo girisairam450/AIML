@@ -1,15 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jul 16 18:12:26 2020
-
-@author: girisairam.ragam
-"""
-
 import cv2
 import numpy as np
 
 
-#image = cv2.imread(r'D:\girisairam.ragam\My Downloads\samples_IBM\Claim Form (1).jpg')
+#image = cv2.imread(r'path-img')
 #image = cv2.medianBlur(image,5)
 ##img = cv2.resize(img, (widthImg, heightImg)) # RESIZE IMAGE
 #gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -42,7 +35,7 @@ import numpy as np
 
 
 
-#image = cv2.imread(r'D:\girisairam.ragam\My Downloads\samples_IBM\Aadhar Card (1).jpg')
+#image = cv2.imread(r'img')
 image = cv2.imread('138-S.jpeg')
 # create grayscale
 gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
